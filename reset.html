@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEXORA | Recuperar contraseña</title>
+  <meta name="theme-color" content="#111827">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header"><a class="brand" href="./"><span class="brand-symbol">✦</span> NEXORA</a></header>
+    <main>
+      <section class="hero">
+        <div><span class="kicker">Seguridad de tu cuenta</span><h1>Recupera<br><em>tu acceso.</em></h1><p>Elige una contraseña nueva para continuar usando tus herramientas.</p></div>
+        <div class="hero-symbol" aria-hidden="true">✦</div>
+      </section>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <section class="surface auth-panel">
+        <div class="section-heading"><div><span class="eyebrow dark">Recuperación</span><h2>Contraseña nueva</h2><p id="recovery-info">Comprobando tu enlace de recuperación...</p></div></div>
+        <form id="reset-form" class="form-stack" hidden>
+          <label for="new-password">Nueva contraseña</label><input id="new-password" name="new-password" type="password" minlength="12" autocomplete="new-password" required placeholder="Mínimo 12 caracteres">
+          <label for="confirm-password">Confirmar nueva contraseña</label><input id="confirm-password" name="confirm-password" type="password" minlength="12" autocomplete="new-password" required placeholder="Repite tu contraseña">
+          <button id="save-password" type="submit" class="button button-primary">Guardar contraseña</button>
+        </form>
+        <p class="small-note"><a href="./">Volver al inicio de sesión</a></p>
+      </section>
+    </main>
+    <footer class="footer"><span>✦ NEXORA</span><span>Tu acceso, protegido.</span></footer>
+  </div>
+  <script type="module" src="./reset.js"></script>
+</body>
+</html>
