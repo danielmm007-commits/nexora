@@ -202,6 +202,29 @@ $("#login-form").addEventListener("submit", async (event) => {
   }
 });
 
+$("#forgot-password").addEventListener("click", async () => {
+  message("");
+  const emailField = $("#email");
+  const email = emailField.value.trim();
+  if (!email || !emailField.checkValidity()) {
+    message("Primero escribe tu correo electrónico en el formulario.", true);
+    emailField.focus();
+    return;
+  }
+  const button = $("#forgot-password");
+  button.disabled = true;
+  try {
+    const recoveryUrl = new URL("./reset.html", window.location.href).href;
+    const { error } = await db.auth.resetPasswordForEmail(email, { redirectTo: recoveryUrl });
+    if (error) throw error;
+    message("Si ese correo corresponde a una cuenta NEXORA, recibirás un enlace para cambiar la contraseña. Revisa también spam.");
+  } catch (error) {
+    message("No pudimos solicitar la recuperación: " + (error.message || "Inténtalo nuevamente más tarde."), true);
+  } finally {
+    button.disabled = false;
+  }
+});
+
 ui.logout.addEventListener("click", async () => {
   message("");
   const { error } = await db.auth.signOut();
