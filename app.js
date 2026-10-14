@@ -143,6 +143,14 @@ async function refresh() {
   ui.admin.hidden = true;
   ui.logout.hidden = true;
   try {
+    const { data: sessionData, error: sessionError } = await db.auth.getSession();
+    if (sessionError) throw sessionError;
+    if (!sessionData.session) {
+      activeUser = null;
+      ui.auth.hidden = false;
+      ui.account.textContent = "Herramientas compartidas";
+      return;
+    }
     const { data, error } = await db.auth.getUser();
     if (error) throw error;
     activeUser = data.user;
