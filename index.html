@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <meta name="description" content="NEXORA: tus herramientas digitales en un solo lugar.">
+  <title>NEXORA | Utilitarios compartidos</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="NEXORA, inicio"><span class="brand-symbol">✦</span> NEXORA</a>
+      <div class="header-right"><span class="eyebrow" id="account-label">Herramientas compartidas</span><button type="button" id="logout" class="button button-outline" hidden>Cerrar sesión</button></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div><span class="kicker"><span class="online-dot"></span> Un espacio para crear y compartir</span>
+          <h1>Una plataforma.<br><em>Muchas posibilidades.</em></h1>
+          <p>Utilitarios prácticos, organizados en un solo lugar y disponibles para las personas que tú decidas.</p>
+        </div>
+        <div class="hero-symbol" aria-hidden="true">✦</div>
+      </section>
+      <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+      <section id="loading" class="surface" aria-live="polite"><p>Preparando tu espacio NEXORA...</p></section>
+      <section id="auth-panel" class="surface auth-panel" hidden>
+        <div class="section-heading"><div><span class="eyebrow dark">Acceso personal</span><h2>Inicia sesión</h2><p>Solo las personas invitadas pueden acceder a las herramientas.</p></div><span class="section-icon" aria-hidden="true">↗</span></div>
+        <form id="login-form" class="form-stack">
+          <label for="email">Correo electrónico</label><input id="email" name="email" type="email" autocomplete="username" required placeholder="tu@correo.com">
+          <label for="password">Contraseña</label><input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Tu contraseña">
+          <button type="submit" class="button button-primary" id="login-button">Entrar a NEXORA →</button>
+        </form>
+        <p class="small-note">¿Aún no tienes acceso? Solicita una invitación al administrador.</p>
+      </section>
+      <section id="user-panel" hidden>
+        <div class="section-heading section-spacing"><div><span class="eyebrow dark">Tu espacio</span><h2>Mis herramientas</h2><p>Solo aparecen los utilitarios que tienes autorizados.</p></div><div id="tool-count" class="count-pill">0 utilitarios</div></div>
+        <div id="tools-grid" class="tools-grid"></div>
+        <div id="empty-tools" class="surface empty-state" hidden><span class="empty-art" aria-hidden="true">✧</span><h3>Tu espacio está listo</h3><p>Aún no hay herramientas habilitadas para tu cuenta. El administrador podrá compartirlas contigo.</p></div>
+      </section>
+      <section id="admin-panel" class="admin-panel" hidden>
+        <div class="section-heading section-spacing"><div><span class="eyebrow dark">Panel privado</span><h2>Administración</h2><p>Crea utilitarios y decide quién puede utilizarlos.</p></div><div class="count-pill">Administrador</div></div>
+        <div class="admin-grid">
+          <div class="surface">
+            <h3>Agregar utilitario</h3>
+            <form id="create-tool" class="form-stack">
+              <label for="tool-title">Nombre</label><input id="tool-title" required minlength="2" maxlength="100" placeholder="Ej. Calculadora de costos">
+              <label for="tool-slug">Identificador</label><input id="tool-slug" required minlength="2" maxlength="60" pattern="[a-z0-9][a-z0-9-]{1,59}" placeholder="calculadora-costos">
+              <label for="tool-description">Descripción</label><textarea id="tool-description" rows="2" placeholder="¿Para qué sirve?"></textarea>
+              <label for="tool-category">Categoría</label><input id="tool-category" value="General" placeholder="General">
+              <label for="tool-url">Ruta o enlace</label><input id="tool-url" required placeholder="./herramientas/calculadora.html">
+              <label class="checkbox-line"><input id="tool-enabled" type="checkbox"> Habilitar este utilitario</label>
+              <button class="button button-primary" type="submit">Guardar utilitario</button>
+            </form>
+          </div>
+          <div class="surface">
+            <h3>Permisos individuales</h3>
+            <p class="muted">Los usuarios aparecerán aquí después de iniciar sesión por primera vez.</p>
+            <form id="change-access" class="form-stack">
+              <label for="access-user">Usuario</label><select id="access-user" required></select>
+              <label for="access-tool">Utilitario</label><select id="access-tool" required></select>
+              <div class="action-pair"><button class="button button-primary" type="submit" name="access-action" value="grant">Conceder acceso</button><button class="button button-outline" type="submit" name="access-action" value="revoke">Revocar acceso</button></div>
+            </form>
+            <div id="access-summary" class="small-note" aria-live="polite"></div>
+          </div>
+        </div>
+        <div class="surface catalog-wrap"><h3>Catálogo registrado</h3><div id="catalog"></div></div>
+      </section>
+    </main>
+    <footer class="footer"><span>✦ NEXORA</span><span>Construimos soluciones, compartimos posibilidades.</span></footer>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
